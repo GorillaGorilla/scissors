@@ -1,8 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
+    <TextView android:text="Rock Paper Scissors Game" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView" />
     <Button
@@ -10,14 +9,11 @@
         android:layout_height="wrap_content"
         android:text="Play Computer"
         android:id="@+id/bPlay"
-        android:layout_gravity="bottom" />
-
+        android:layout_gravity="top" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Watch Computer Battle"
         android:id="@+id/bWatch"
         android:layout_gravity="bottom" />
-
-
 </LinearLayout>

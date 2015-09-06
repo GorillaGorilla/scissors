@@ -13,13 +13,20 @@ public class RockGame {
     List<Player> players = new ArrayList<Player>();
     int round, mode;
 
-    public RockGame(){
+    public RockGame(boolean watching){
         round = 0;
-
+        if (watching) {
+            players.add(vicVinegar);
+            players.add(hughHoney);
+        }else{
+            players.add(vicVinegar);
+            players.add(humanP);
+        }
     }
 
     public void update(int playermove){
 
+        handlePlayerChoice(playermove);
 
         if (round < 5) {
 //        cycle player
@@ -93,6 +100,52 @@ public class RockGame {
 
         }
         return 4;
+    }
+
+    public void handlePlayerChoice(int i){
+        switch (i){
+            case 0 :
+                humanP.choice = Player.PlayerChoice.Rock;
+                humanP.setState(true);
+                break;
+            case 1 :
+                humanP.choice = Player.PlayerChoice.Paper;
+                humanP.setState(true);
+                break;
+            case 2 :
+                humanP.choice = Player.PlayerChoice.Scissors;
+                humanP.setState(true);
+            case 3 :
+                humanP.randomSelection();
+        }
+
+
+
+    }
+
+    public String getSummaryMsg(){
+        StringBuilder sb = new StringBuilder();
+        if (players.get(0).getScoreInt()<players.get(1).getScoreInt()){
+//            p2 wins
+            sb.append(players.get(1).name);
+        }else if (players.get(0).getScoreInt()>players.get(1).getScoreInt()){
+//            p1 wins
+            sb.append(players.get(0).name);
+        }else if (players.get(0).getScoreInt()==players.get(1).getScoreInt()){
+//            draw
+            sb.append("Nobody ");
+        }
+
+        sb.append(" wins!");
+        return  sb.toString();
+
+    }
+
+    public void reset(){
+        round = 0;
+        for (Player p : players){
+            p.reset();
+        }
     }
 
 

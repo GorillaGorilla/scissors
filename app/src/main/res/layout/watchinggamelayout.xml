@@ -7,7 +7,8 @@
         android:layout_height="40dp"
         android:orientation="horizontal"
         android:layout_gravity="top">
-        </LinearLayout>
+
+    </LinearLayout>
     <TextView android:text= "Name"
         android:layout_gravity="center_horizontal"
         android:id="@+id/name1"
@@ -38,42 +39,16 @@
         android:id="@+id/name2"
         android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:orientation="horizontal"
-        android:layout_gravity="bottom">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Rock"
-        android:id="@+id/bRock"
-        android:layout_gravity="bottom" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose Paper"
-        android:id="@+id/bPaper"
-        android:layout_gravity="bottom" />
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Choose Scissors"
-            android:id="@+id/bScissors"
-            android:layout_gravity="bottom" />
-
-    </LinearLayout>
-    <Button
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Go!"
-    android:id="@+id/bGo"
-    android:layout_gravity="center_horizontal" />
+        android:text="Go!"
+        android:id="@+id/bGo"
+        android:layout_gravity="center_horizontal" />
 
     <TextView android:text= "@string/Final_Summary"
-        android:id="@+id/tSummary"
         android:layout_gravity="center_horizontal"
+        android:id="@+id/tSummary"
         android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
 
 

@@ -8,32 +8,23 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Created by f mgregor on 05/09/2015.
+ * Created by f mgregor on 06/09/2015.
  */
-public class GameActivity extends Activity implements View.OnClickListener {
+public class WatchingGameActivity extends Activity implements View.OnClickListener {
 
-    int round, mode, playerInput;
-    Button pressGo, pressRock, pressPaper, pressScissors, pressBack;
+    Button pressGo, pressBack;
     ImageView p1Weapon, p2Weapon;
-    TextView p1Score, p2Score, p1Name, p2Name, statusMessage;
-
-    RockGame game = new RockGame(false);
+    TextView p1Score, p2Score, statusMessage, p1Name, p2Name;
+    int playerInput;
+    RockGame game = new RockGame(true);
 
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        Bundle extras = getIntent().getExtras();
-        mode = 0;
         game.reset();
-//        use mode variable to determine whether human or computer controlled
-        setContentView(R.layout.gamelayout);
+        setContentView(R.layout.watchinggamelayout);
 //        maybe remove these later
-        pressRock = (Button) findViewById(R.id.bRock);
-        pressPaper = (Button) findViewById(R.id.bPaper);
-        pressScissors = (Button) findViewById(R.id.bScissors);
+
         pressGo = (Button) findViewById(R.id.bGo);
         p1Weapon = (ImageView) findViewById(R.id.iSelectionP1);
         p2Weapon = (ImageView) findViewById(R.id.iSelectionP2);
@@ -42,23 +33,26 @@ public class GameActivity extends Activity implements View.OnClickListener {
         p1Name = (TextView) findViewById(R.id.name1);
         p2Name = (TextView) findViewById(R.id.name2);
         statusMessage = (TextView) findViewById(R.id.tSummary);
-        pressRock.setOnClickListener(this);
-        pressPaper.setOnClickListener(this);
-        pressScissors.setOnClickListener(this);
+
         pressGo.setOnClickListener(this);
-        playerInput = 3;  //default value
+        playerInput = 3;  //default value is random
         p1Name.setText(game.players.get(0).name);
         p2Name.setText(game.players.get(1).name);
     }
 
-    public void update(){
 
-        game.update(playerInput);
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case  R.id.bGo :
+                game.update(playerInput);
+                updateScreen();   // if i put all the game logic in its own class this is needed
+                break;
+        }
     }
 
     public void updateScreen(){
-
-        if (game.round < 5) {
+        if (game.round<5) {
             for (int i = 0; i < 2; i++) {
 
             }
@@ -87,62 +81,10 @@ public class GameActivity extends Activity implements View.OnClickListener {
             System.out.println("p1 score: " + game.players.get(0).getScore());
             System.out.println("p2 score: " + game.players.get(1).getScore());
             p2Score.setText(game.players.get(1).getScore());
-        }else{
+
+        }else {
             statusMessage.setText(game.getSummaryMsg());
         }
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.bRock :
-                playerInput = 0;
-                break;
-            case R.id.bPaper :
-                playerInput = 1;
-                break;
-            case R.id.bScissors :
-                playerInput = 2;
-                break;
-            case  R.id.bGo :
-                update();
-                updateScreen();   // if i put all the game logic in its own class this is needed
-                break;
-        }
-    }
-
-    public int whoWins(Player p1, Player p2){
-//        calculates who wins out of 2 players choices.
-//        returns an int, 0 is draw, 1 is p1, 2 is p2, 4 is error
-        if (p1.choice == Player.PlayerChoice.Rock){
-            if (p2.choice == Player.PlayerChoice.Rock){
-                return 0;
-            }else if(p2.choice == Player.PlayerChoice.Paper){
-                return 2;
-            }else if (p2.choice == Player.PlayerChoice.Scissors){
-                return 1;
-            }
-
-        }else if(p1.choice == Player.PlayerChoice.Paper){
-            if (p2.choice == Player.PlayerChoice.Rock){
-                return 1;
-            }else if(p2.choice == Player.PlayerChoice.Paper){
-                return 0;
-            }else if (p2.choice == Player.PlayerChoice.Scissors){
-                return 2;
-            }
-
-        }else if (p1.choice == Player.PlayerChoice.Scissors){
-            if (p2.choice == Player.PlayerChoice.Rock){
-                return 2;
-            }else if(p2.choice == Player.PlayerChoice.Paper){
-                return 1;
-            }else if (p2.choice == Player.PlayerChoice.Scissors){
-                return 0;
-            }
-
-        }
-        return 4;
     }
 
 }

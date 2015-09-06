@@ -12,6 +12,7 @@ import android.widget.Button;
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
 
     Intent iDroids = new Intent("com.ibmadness.devteam.scissors.DT");
+    Intent watch = new Intent("com.ibmadness.devteam.scissors.WG");
     Button pressPlay, pressWatch;
     int mode;
     @Override
@@ -58,7 +59,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             case R.id.bWatch :
                 mode = 1;
 //                iDroids.putExtra("mode",mode);
-                startActivity(iDroids);
+                startActivity(watch);
                 break;
         }
     }

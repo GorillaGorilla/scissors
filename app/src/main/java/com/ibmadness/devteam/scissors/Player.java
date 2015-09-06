@@ -83,5 +83,18 @@ public class Player {
         return sb.toString();
     }
 
+    public int getScoreInt(){
+        int sum = 0;
+        for (int i : scores){
+            sum += i;}
+
+        return sum;
+    }
+
+    public void reset(){
+        chosenYet = false;
+        for (int i : scores){
+            i = 0;}
+    }
 
 }
